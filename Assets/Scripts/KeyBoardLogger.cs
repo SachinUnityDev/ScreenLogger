@@ -49,7 +49,6 @@ public class KeyBoardLogger : MonoBehaviour
         }
     }
   
-
     void Update()
     {
         //if (Time.time > nextActionTime)

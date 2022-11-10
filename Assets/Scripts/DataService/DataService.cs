@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DataService : MonoSingletonGeneric<DataService>
 {
@@ -20,7 +21,8 @@ public class DataService : MonoSingletonGeneric<DataService>
     [SerializeField] float prevTime = 0f; 
     void Start()
     {
-        
+        TimeData timedata = new TimeData(10, 70);
+        Debug.Log("timeData" + timedata.ConvertTime().mins);
     }
 
     public void OnPunchIN()
@@ -45,22 +47,21 @@ public class DataService : MonoSingletonGeneric<DataService>
 
         dataModel.keyStrokesCountNet += dataModel.keyStrokesCountMin;
 
-        if (dataModel.mouseClickCountMin > mouseBenchMarkMin &&
+        if (dataModel.mouseClickCountMin > mouseBenchMarkMin ||
              dataModel.keyStrokesCountMin > keyStrokeBenchMarkMin)
         {
             dataModel.prodTime.mins++;
-            dataModel.prodTime.RationTime(); 
-
+            dataModel.prodTime.ConvertTime(); 
         }
         else if(breakOn)
         {
             dataModel.breakTime.mins++;
-            dataModel.breakTime.RationTime();
+            dataModel.breakTime.ConvertTime();
         }
         else
         {
             dataModel.UATime.mins++;
-            dataModel.UATime.RationTime();
+            dataModel.UATime.ConvertTime();
         }
     }
 
