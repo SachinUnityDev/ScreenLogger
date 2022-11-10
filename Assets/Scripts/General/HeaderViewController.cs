@@ -35,6 +35,5 @@ public class HeaderViewController : MonoBehaviour
         {
             breakBtn.GetComponent<Image>().sprite = breakOnSprite;
         }
-
     }
 }

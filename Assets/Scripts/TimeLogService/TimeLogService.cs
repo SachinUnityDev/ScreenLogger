@@ -13,9 +13,9 @@ public class TimeLogService : MonoSingletonGeneric<TimeLogService>
     public event Action OnStartOfTheShift;
     public event Action OnEndOfTheShift;
 
-    public TimeModel timeModel;
 
-    public bool breakOn = false;
+
+
 
 
     [Header("Date and Time")]
@@ -33,8 +33,7 @@ public class TimeLogService : MonoSingletonGeneric<TimeLogService>
     }
 
     void StartShift()
-    {
-        timeModel = new TimeModel();
+    {     
         theTime = System.DateTime.Now.ToString("hh:mm:ss"); 
         theDate = System.DateTime.Now.ToString("MM/dd/yyyy");
      

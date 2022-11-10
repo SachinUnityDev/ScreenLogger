@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MaintecEPMS.unity
+    guid: 6267ab3e9a40b764285373592269f371
   m_configObjects: {}
