@@ -37,7 +37,7 @@ public class ScreenLogger : MonoBehaviour
     void Update()
     {
         
-        if(Time.time - prevTime > 1f)
+        if(Time.time - prevTime > 500f)
         {
             ScreenShot2();
             prevTime = Time.time;
