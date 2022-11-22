@@ -55,7 +55,8 @@ public class AppLogger : MonoBehaviour
     void Update()
     {
 
-       // PrintAppName();
+
+            //       PrintAppName();
 
     }
 

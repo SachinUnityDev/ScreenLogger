@@ -14,6 +14,7 @@ public class DataService : MonoSingletonGeneric<DataService>
     public int keyStrokeBenchMarkMin = 5; 
     public int mouseBenchMarkMin = 5;
 
+
     [Header("Global Variables")]
     public bool trackOn = false;
     public bool breakOn = false;
@@ -31,7 +32,7 @@ public class DataService : MonoSingletonGeneric<DataService>
     {
         dataModel = new DataModel();
         TrackMinReset();
-        dataViewController.PopulateTimeStats();
+       
     }
     public void OnPunchOut()
     {
@@ -67,6 +68,7 @@ public class DataService : MonoSingletonGeneric<DataService>
             dataModel.UATime.mins++;
             dataModel.UATime.ConvertTime();
         }
+        dataViewController.PopulateTimeStats();
     }
 
     public void ToggleBreak(breakData breakData)
@@ -81,17 +83,19 @@ public class DataService : MonoSingletonGeneric<DataService>
 
     private void Update()
     {
-        if(Time.time > prevTime+ 10f)
+        if(Time.time > prevTime+ 40f)
         {
             trackOn = !trackOn;
             if (trackOn)
             {
+                // send this after a min...this has a bug
                 TrackMinReset();
             }
             else
             {
+
                 UpdateTimeVals();
-                dataViewController.PopulateTimeStats();
+               
             }
                 
             prevTime = Time.time;

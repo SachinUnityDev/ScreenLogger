@@ -9,20 +9,35 @@ using System.Linq;
 public class LoginController : MonoBehaviour
 {
 
-    [SerializeField] TMP_InputField loginName; 
-    [SerializeField] TMP_InputField password;
+    [SerializeField] TMP_InputField userNameInput; 
+    [SerializeField] TMP_InputField pswdImput;
 
     [SerializeField] Button loginBtn;
     [SerializeField] Button forgotPassword;
 
-    [SerializeField] TextMeshProUGUI resultTxt ; 
+    [SerializeField] TextMeshProUGUI resultTxt ;
+
+    [Header("Global Var")]
+    [SerializeField] string username =""; 
+    [SerializeField] string pswd ="";
 
     void Start()
     {
         loginBtn.onClick.AddListener(OnLoginBtnPressed);
-        forgotPassword.onClick.AddListener(OnForgotPasswordPressed); 
+        forgotPassword.onClick.AddListener(OnForgotPasswordPressed);
+        userNameInput.onSubmit.AddListener(OnUsernameSubmit);
+        pswdImput.onSubmit.AddListener(OnPasswordSubmit);
     }
+    void OnUsernameSubmit(string _loginName)
+    {
+        username = _loginName.Trim();
+    }
+    void OnPasswordSubmit(string _password)
+    {
+        pswd = _password.Trim();
+        OnLoginBtnPressed();
 
+    }
     void OnLoginBtnPressed()
     {
         StartCoroutine(LoginToApp());
@@ -35,11 +50,9 @@ public class LoginController : MonoBehaviour
 
     IEnumerator LoginToApp()
     {
-        string username = loginName.text.Trim();
-        string pswd = password.text.Trim();
         WWWForm form = new WWWForm();
-        form.AddField("username", "sachin.s@maintec.in");
-        form.AddField("password", "Admin@123");
+        form.AddField("username", "sachin.s@maintec.in"); // use userName 
+        form.AddField("password", "Admin@123");// use pswd here 
 
         UnityWebRequest www = UnityWebRequest.Post("https://mhrms.io/test/api/user-login", form);
         yield return www.SendWebRequest();
@@ -66,7 +79,6 @@ public class LoginController : MonoBehaviour
         {
             resultTxt.text = loginRes.message;
         }
-
         www.Dispose();
     }
    
