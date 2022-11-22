@@ -25,13 +25,14 @@ public class PunchLogService : MonoSingletonGeneric<PunchLogService>
         StartShift();      
     }
 
-    void StartShift()
+    public void StartShift()
     {     
         theTime = System.DateTime.Now.ToString("hh:mm:ss"); 
         theDate = System.DateTime.Now.ToString("MM/dd/yyyy");
      
         dateStrs = theDate.Split('-');
-        timeStrs = theTime.Split(':'); 
+        timeStrs = theTime.Split(':');
+        On_StartOfTheShift();
     }
 
 

@@ -38,8 +38,8 @@ public class LoginController : MonoBehaviour
         string username = loginName.text.Trim();
         string pswd = password.text.Trim();
         WWWForm form = new WWWForm();
-        form.AddField("username", username);
-        form.AddField("password", pswd);
+        form.AddField("username", "sachin.s@maintec.in");
+        form.AddField("password", "Admin@123");
 
         UnityWebRequest www = UnityWebRequest.Post("https://mhrms.io/test/api/user-login", form);
         yield return www.SendWebRequest();
@@ -60,6 +60,7 @@ public class LoginController : MonoBehaviour
         if (loginRes.success)
         {
             AppControllService.Instance.TogglePanel(PanelName.MainPanel);
+            PunchLogService.Instance.StartShift(); 
         }
         else
         {

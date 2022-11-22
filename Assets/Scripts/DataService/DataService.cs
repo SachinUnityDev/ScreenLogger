@@ -23,11 +23,15 @@ public class DataService : MonoSingletonGeneric<DataService>
     {
         TimeData timedata = new TimeData(10, 70);
         Debug.Log("timeData" + timedata.ConvertTime().mins);
+        PunchLogService.Instance.OnStartOfTheShift += OnPunchIN; 
+
     }
 
     public void OnPunchIN()
     {
         dataModel = new DataModel();
+        TrackMinReset();
+        dataViewController.PopulateTimeStats();
     }
     public void OnPunchOut()
     {
